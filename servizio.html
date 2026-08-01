@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block titolo %}{{ s.titolo }} — Enercubica{% endblock %}
+{% block descrizione %}{{ s.sintesi }}{% endblock %}
+
+{% block contenuto %}
+
+<section class="testata-servizio su-scuro">
+  <div class="contenitore">
+    <p class="briciole">
+      <a href="{{ url_for('home') }}">Home</a> /
+      <a href="{{ url_for('servizi_index') }}">Servizi</a> / {{ s.titolo }}
+    </p>
+    <p class="occhiello">{{ s.occhiello }}</p>
+    <h1>{{ s.titolo }}</h1>
+    <p>{{ s.sintesi }}</p>
+  </div>
+</section>
+
+<div class="barra barra-{{ s.colore }}" aria-hidden="true" style="height:6px"></div>
+
+<section class="sezione">
+  <div class="contenitore">
+    <div class="servizio-griglia">
+      <div>
+        {% for p in s.paragrafi %}<p>{{ p }}</p>{% endfor %}
+
+        <h3 style="margin-top:2rem">Cosa comprende</h3>
+        <ul class="lista-punti">
+          {% for punto in s.punti %}<li>{{ punto }}</li>{% endfor %}
+        </ul>
+
+        <div class="riquadro">
+          <h3>Contributi pubblici</h3>
+          <p>Su ogni intervento verifichiamo se esistono bandi a fondo perduto o
+             strumenti di finanza agevolata che ne riducono il costo. È un
+             controllo che facciamo prima del preventivo, non dopo.</p>
+          <a class="btn btn-linea-verde" href="{{ url_for('servizio', slug='bandi-e-incentivi') }}">Come funzionano i bandi</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="servizio-foto">
+          <img src="{{ url_for('static', filename='img/' + s.img) }}" alt="{{ s.titolo }}">
+        </div>
+        <div style="margin-top:2rem">
+          {% with titolo_modulo = 'Chiedi informazioni su ' ~ s.titolo, servizio_preselezionato = s.titolo %}
+            {% include 'partials/modulo.html' %}
+          {% endwith %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione sezione-carta">
+  <div class="contenitore">
+    <div class="testata">
+      <p class="occhiello">Altri servizi</p>
+      <h2>Spesso vanno insieme</h2>
+    </div>
+    <div class="griglia-servizi" style="grid-template-columns:repeat(3,1fr)">
+      {% for a in altri %}
+      <a class="card" href="{{ url_for('servizio', slug=a.slug) }}">
+        <div class="barra barra-{{ a.colore }}" aria-hidden="true"></div>
+        <div class="card-foto"><img src="{{ url_for('static', filename='img/' + a.img) }}" alt="{{ a.titolo }}" loading="lazy"></div>
+        <div class="card-corpo">
+          <h3>{{ a.titolo }}</h3>
+          <p>{{ a.sintesi }}</p>
+          <span class="vai">Approfondisci →</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

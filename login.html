@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block titolo %}Area riservata — Enercubica{% endblock %}
+
+{% block contenuto %}
+<section class="sezione">
+  <div class="contenitore" style="max-width:420px">
+    <h1 style="font-size:1.8rem">Area riservata</h1>
+    {% if errore %}<div class="avviso ko">{{ errore }}</div>{% endif %}
+    <form method="post" class="modulo">
+      <div class="campo">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autofocus required>
+      </div>
+      <button class="btn btn-primario" type="submit" style="width:100%">Entra</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

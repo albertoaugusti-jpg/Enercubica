@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block titolo %}Pagina non trovata — Enercubica{% endblock %}
+
+{% block contenuto %}
+<section class="sezione" style="padding-top:5rem;padding-bottom:5rem">
+  <div class="contenitore" style="max-width:640px;text-align:center">
+    <div class="intreccio" aria-hidden="true" style="justify-content:center;margin-bottom:1.5rem">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <h1>Questa pagina non esiste</h1>
+    <p style="color:var(--grigio)">Forse l'indirizzo è cambiato. Riparti dalla home
+       o guarda l'elenco dei servizi.</p>
+    <p style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
+      <a class="btn btn-primario" href="{{ url_for('home') }}">Torna alla home</a>
+      <a class="btn btn-linea-verde" href="{{ url_for('servizi_index') }}">Vedi i servizi</a>
+    </p>
+  </div>
+</section>
+{% endblock %}

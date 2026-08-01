@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block titolo %}Enercubica — Rete di Impresa{% endblock %}</title>
+<meta name="description" content="{% block descrizione %}Enercubica è una rete di impresa: energia e gas, bandi e incentivi, fotovoltaico, bonifica amianto, edilizia, sicurezza, telefonia e aria compressa. Un unico interlocutore per la tua azienda.{% endblock %}">
+<link rel="canonical" href="https://www.enercubica.it{{ request.path }}">
+<meta property="og:title" content="{{ self.titolo() }}">
+<meta property="og:description" content="{{ self.descrizione() }}">
+<meta property="og:type" content="website">
+<meta property="og:image" content="{{ url_for('static', filename='img/logo-enercubica.png', _external=True) }}">
+<link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+{% include 'partials/navbar.html' %}
+
+<main>
+  {% block contenuto %}{% endblock %}
+</main>
+
+{% include 'partials/footer.html' %}
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block script %}{% endblock %}
+</body>
+</html>

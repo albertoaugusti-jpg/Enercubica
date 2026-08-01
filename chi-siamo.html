@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block titolo %}Chi siamo — Enercubica Rete di Impresa{% endblock %}
+{% block descrizione %}Enercubica è una rete di impresa che riunisce aziende specializzate in energia, finanza agevolata, impianti, edilizia, sicurezza e connettività.{% endblock %}
+
+{% block contenuto %}
+
+<section class="testata-servizio su-scuro">
+  <div class="contenitore">
+    <p class="briciole"><a href="{{ url_for('home') }}">Home</a> / Chi siamo</p>
+    <div class="intreccio" aria-hidden="true" style="margin-bottom:1.2rem"><span></span><span></span><span></span><span></span></div>
+    <h1>Chi siamo e come operiamo</h1>
+    <p>Una rete di imprese che mette in comune competenze tecniche, referenze e
+       un unico riferimento commerciale per il cliente.</p>
+  </div>
+</section>
+
+<section class="sezione">
+  <div class="contenitore">
+    <div class="servizio-griglia">
+      <div>
+        <h2>Il contratto di rete, in pratica</h2>
+        <p>Enercubica nasce come <b>rete di impresa</b>: un accordo fra aziende
+           autonome che decidono di presentarsi insieme al mercato. Ognuna mantiene
+           la propria specializzazione e la propria struttura; insieme coprono
+           l'intero ciclo di un intervento su un immobile o su un'attività
+           produttiva.</p>
+        <p>Per il cliente il vantaggio è concreto: un solo referente raccoglie
+           l'esigenza, coordina i partner coinvolti e risponde dell'avanzamento.
+           Non deve tenere insieme cinque fornitori che non si parlano.</p>
+
+        <h2 style="margin-top:2.5rem">Da dove partiamo</h2>
+        <p>Ogni rapporto inizia con un'analisi della situazione reale: consumi
+           energetici, stato degli impianti, adempimenti in scadenza, investimenti
+           già in programma. Da lì costruiamo una proposta che tiene conto anche
+           dei contributi pubblici disponibili — bandi a fondo perduto e strumenti
+           di finanza agevolata — perché spesso cambiano la convenienza di un
+           investimento.</p>
+
+        <ul class="lista-punti">
+          <li>Imprese indipendenti, unite da un contratto di rete</li>
+          <li>Copertura operativa dal Nord al Sud Italia</li>
+          <li>Un referente commerciale unico per il cliente</li>
+          <li>Verifica dei contributi pubblici su ogni intervento</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="servizio-foto">
+          <img src="{{ url_for('static', filename='img/mappa-rete.png') }}"
+               alt="I partner della rete Enercubica sul territorio italiano">
+        </div>
+        <div class="riquadro">
+          <h3>Le imprese della rete</h3>
+          <ul class="elenco-partner" style="grid-template-columns:1fr">
+            {% for p in partner %}
+            <li><b>{{ p.nome }}</b><span>{{ p.settore }}</span></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione sezione-carta">
+  <div class="contenitore">
+    <div class="testata">
+      <p class="occhiello">Servizi</p>
+      <h2>Cosa possiamo seguire per te</h2>
+    </div>
+    <div class="griglia-servizi">
+      {% for s in servizi %}
+      <a class="card" href="{{ url_for('servizio', slug=s.slug) }}">
+        <div class="barra barra-{{ s.colore }}" aria-hidden="true"></div>
+        <div class="card-corpo">
+          <h3>{{ s.titolo }}</h3>
+          <p>{{ s.sintesi }}</p>
+          <span class="vai">Approfondisci →</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include 'partials/richiamo.html' %}
+
+{% endblock %}

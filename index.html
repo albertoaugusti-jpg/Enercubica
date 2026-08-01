@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block titolo %}Enercubica — Rete di Impresa | Energia, bandi, impianti e sicurezza{% endblock %}
+
+{% block contenuto %}
+
+<section class="hero su-scuro">
+  <div class="hero-sfondo">
+    <img src="{{ url_for('static', filename='img/hero.jpg') }}" alt="" aria-hidden="true">
+  </div>
+
+  <div class="contenitore hero-contenuto">
+    <div class="intreccio" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <h1>Nove imprese specializzate. <em>Un solo interlocutore.</em></h1>
+    <p class="guida">
+      Enercubica è una rete di impresa. Ogni partner porta il proprio mestiere —
+      energia, bandi, impianti, edilizia, sicurezza, connettività — e il cliente
+      parla con una persona sola, dal primo sopralluogo alla fine dei lavori.
+    </p>
+    <div class="hero-azioni">
+      <a class="btn btn-chiaro" href="{{ url_for('contatti') }}">Parla con la rete</a>
+      <a class="btn btn-linea" href="{{ url_for('servizi_index') }}">Vedi i servizi</a>
+    </div>
+  </div>
+
+  <div class="contenitore hero-competenze">
+    {% for s in servizi %}<span>{{ s.titolo }}</span>{% endfor %}
+  </div>
+</section>
+
+<section class="sezione">
+  <div class="contenitore">
+    <div class="testata">
+      <p class="occhiello">Come lavoriamo</p>
+      <h2>Una rete serve se semplifica la vita all'impresa</h2>
+      <p>Non un consorzio di fornitori messi in fila, ma un gruppo di aziende che
+         si passano le informazioni e condividono lo stesso referente.</p>
+    </div>
+
+    <div class="tre-colonne">
+      <div class="blocco">
+        <div class="segno" aria-hidden="true"></div>
+        <h3>Un referente unico</h3>
+        <p>Un solo interlocutore raccoglie l'esigenza, coinvolge i partner giusti e
+           segue il lavoro fino alla fine. Niente rimpalli fra fornitori.</p>
+      </div>
+      <div class="blocco">
+        <div class="segno" aria-hidden="true"></div>
+        <h3>Competenze che si parlano</h3>
+        <p>Chi bonifica il tetto e chi progetta il fotovoltaico lavorano allo stesso
+           cantiere; chi segue i bandi sa già quali spese sono ammissibili.</p>
+      </div>
+      <div class="blocco">
+        <div class="segno" aria-hidden="true"></div>
+        <h3>Contributi valutati sempre</h3>
+        <p>Su ogni intervento verifichiamo se esistono bandi a fondo perduto o
+           strumenti di finanza agevolata prima di preparare il preventivo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione sezione-carta">
+  <div class="contenitore">
+    <div class="testata">
+      <p class="occhiello">Servizi</p>
+      <h2>Otto competenze, un unico percorso</h2>
+      <p>Puoi chiederci una cosa sola o farci seguire l'intero progetto.</p>
+    </div>
+
+    <div class="griglia-servizi">
+      {% for s in servizi %}
+      <a class="card" href="{{ url_for('servizio', slug=s.slug) }}">
+        <div class="barra barra-{{ s.colore }}" aria-hidden="true"></div>
+        <div class="card-foto"><img src="{{ url_for('static', filename='img/' + s.img) }}" alt="{{ s.titolo }}" loading="lazy"></div>
+        <div class="card-corpo">
+          <h3>{{ s.titolo }}</h3>
+          <p>{{ s.sintesi }}</p>
+          <span class="vai">Approfondisci →</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="sezione sezione-verde su-scuro">
+  <div class="contenitore">
+    <div class="rete-griglia">
+      <div>
+        <p class="occhiello">La rete</p>
+        <h2>Imprese diverse, un solo modo di lavorare</h2>
+        <p style="color:rgba(255,255,255,.85)">
+          Enercubica riunisce aziende che operano dal Nord al Sud Italia. Ognuna resta
+          autonoma nel proprio mestiere, tutte condividono standard di lavoro,
+          referenze e un unico punto di contatto commerciale.
+        </p>
+        <ul class="elenco-partner">
+          {% for p in partner %}
+          <li><b>{{ p.nome }}</b><span>{{ p.settore }}</span></li>
+          {% endfor %}
+        </ul>
+        <p style="margin-top:1.8rem">
+          <a class="btn btn-chiaro" href="{{ url_for('rete') }}">Scopri la rete</a>
+        </p>
+      </div>
+      <div class="rete-mappa">
+        <img src="{{ url_for('static', filename='img/mappa-rete.png') }}"
+             alt="Mappa dei partner della rete Enercubica in Italia" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione">
+  <div class="contenitore">
+    <div class="modulo-griglia">
+      <div>
+        <p class="occhiello">Contatti</p>
+        <h2>Parliamone</h2>
+        <p style="color:var(--grigio)">
+          Descrivici l'esigenza: ti mettiamo in contatto con l'impresa della rete che
+          se ne occupa e ti diciamo subito se esistono contributi pubblici applicabili.
+        </p>
+        <ul class="recapiti">
+          <li><span class="etichetta">Referente</span>
+              <span><b>{{ azienda.referente }}</b><br>{{ azienda.ruolo }}</span></li>
+          <li><span class="etichetta">Email</span>
+              <span><a href="mailto:{{ azienda.email }}">{{ azienda.email }}</a></span></li>
+          <li><span class="etichetta">Telefono</span>
+              <span><a href="tel:{{ azienda.telefono_link }}">{{ azienda.telefono }}</a></span></li>
+        </ul>
+      </div>
+      {% include 'partials/modulo.html' %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

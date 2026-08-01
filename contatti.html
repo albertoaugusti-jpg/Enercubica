@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block titolo %}Contatti — Enercubica Rete di Impresa{% endblock %}
+{% block descrizione %}Scrivi o chiama Enercubica: ti mettiamo in contatto con l'impresa della rete che segue la tua esigenza.{% endblock %}
+
+{% block contenuto %}
+
+<section class="testata-servizio su-scuro">
+  <div class="contenitore">
+    <p class="briciole"><a href="{{ url_for('home') }}">Home</a> / Contatti</p>
+    <div class="intreccio" aria-hidden="true" style="margin-bottom:1.2rem"><span></span><span></span><span></span><span></span></div>
+    <h1>Parliamone</h1>
+    <p>Descrivici l'esigenza. Ti risponde la persona della rete che se ne occupa
+       davvero, non un centralino.</p>
+  </div>
+</section>
+
+<section class="sezione">
+  <div class="contenitore">
+    <div class="modulo-griglia">
+      <div>
+        <p class="occhiello">Recapiti</p>
+        <h2>Come raggiungerci</h2>
+        <ul class="recapiti">
+          <li><span class="etichetta">Referente</span>
+              <span><b>{{ azienda.referente }}</b><br>{{ azienda.ruolo }}</span></li>
+          <li><span class="etichetta">Email</span>
+              <span><a href="mailto:{{ azienda.email }}">{{ azienda.email }}</a></span></li>
+          <li><span class="etichetta">Segreteria</span>
+              <span><a href="mailto:{{ azienda.email_segreteria }}">{{ azienda.email_segreteria }}</a></span></li>
+          <li><span class="etichetta">Telefono</span>
+              <span><a href="tel:{{ azienda.telefono_link }}">{{ azienda.telefono }}</a></span></li>
+          <li><span class="etichetta">Sito</span>
+              <span>{{ azienda.sito }}</span></li>
+        </ul>
+
+        <div class="riquadro" style="margin-top:2.2rem">
+          <h3>Sei un'impresa?</h3>
+          <p>Se vuoi proporre la tua azienda come partner della rete, scrivilo nel
+             messaggio: ti richiama il responsabile sviluppo rete.</p>
+        </div>
+      </div>
+
+      {% with titolo_modulo = 'Scrivici' %}
+        {% include 'partials/modulo.html' %}
+      {% endwith %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

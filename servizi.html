@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block titolo %}Servizi — Enercubica Rete di Impresa{% endblock %}
+{% block descrizione %}Energia e gas, bandi e incentivi, fotovoltaico, bonifica amianto, edilizia, sicurezza e antincendio, telefonia e aria compressa.{% endblock %}
+
+{% block contenuto %}
+
+<section class="testata-servizio su-scuro">
+  <div class="contenitore">
+    <p class="briciole"><a href="{{ url_for('home') }}">Home</a> / Servizi</p>
+    <div class="intreccio" aria-hidden="true" style="margin-bottom:1.2rem"><span></span><span></span><span></span><span></span></div>
+    <h1>I servizi della rete</h1>
+    <p>Otto aree di intervento seguite da imprese specializzate, coordinate da un
+       unico referente.</p>
+  </div>
+</section>
+
+<section class="sezione">
+  <div class="contenitore">
+    <div class="griglia-servizi">
+      {% for s in servizi %}
+      <a class="card" href="{{ url_for('servizio', slug=s.slug) }}">
+        <div class="barra barra-{{ s.colore }}" aria-hidden="true"></div>
+        <div class="card-foto"><img src="{{ url_for('static', filename='img/' + s.img) }}" alt="{{ s.titolo }}" loading="lazy"></div>
+        <div class="card-corpo">
+          <h3>{{ s.titolo }}</h3>
+          <p>{{ s.sintesi }}</p>
+          <span class="vai">Approfondisci →</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include 'partials/richiamo.html' %}
+
+{% endblock %}
