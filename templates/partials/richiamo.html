@@ -1,0 +1,16 @@
+<section class="sezione">
+  <div class="contenitore">
+    <div class="richiamo su-scuro">
+      <div>
+        <div class="intreccio" aria-hidden="true" style="margin-bottom:1rem"><span></span><span></span><span></span><span></span></div>
+        <h2>Dicci cosa ti serve</h2>
+        <p>Ti rispondiamo con la persona giusta della rete e con l'indicazione dei
+           contributi pubblici eventualmente applicabili.</p>
+      </div>
+      <div style="display:flex;gap:.9rem;flex-wrap:wrap">
+        <a class="btn btn-chiaro" href="{{ url_for('contatti') }}">Scrivici</a>
+        <a class="btn btn-linea" href="tel:{{ azienda.telefono_link }}">{{ azienda.telefono }}</a>
+      </div>
+    </div>
+  </div>
+</section>
