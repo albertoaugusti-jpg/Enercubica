@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block titolo %}Cookie Policy — Enercubica{% endblock %}
+
+{% block contenuto %}
+<section class="testata-servizio su-scuro">
+  <div class="contenitore">
+    <p class="briciole"><a href="{{ url_for('home') }}">Home</a> / Cookie Policy</p>
+    <h1>Cookie Policy</h1>
+    <p>Quali cookie usa questo sito.</p>
+  </div>
+</section>
+
+<section class="sezione">
+  <div class="contenitore" style="max-width:760px">
+    <h3>Cookie tecnici</h3>
+    <p>Il sito usa un solo cookie tecnico di sessione, necessario a mantenere
+       l'accesso all'area riservata. Non richiede consenso perché senza di esso il
+       servizio non funziona.</p>
+
+    <h3>Cookie di analisi e marketing</h3>
+    <p>Al momento il sito non installa cookie di profilazione né strumenti di
+       analisi di terze parti. Se in futuro verranno attivati, questa pagina sarà
+       aggiornata e comparirà un banner per raccogliere il consenso.</p>
+
+    <h3>Font esterni</h3>
+    <p>I caratteri tipografici sono caricati da Google Fonts: questo comporta una
+       connessione ai server di Google, che può registrare l'indirizzo IP del
+       visitatore.</p>
+
+    <h3>Come gestire i cookie</h3>
+    <p>Puoi bloccare o cancellare i cookie dalle impostazioni del tuo browser. Il
+       blocco dei cookie tecnici impedisce l'accesso all'area riservata.</p>
+
+    <p style="color:var(--grigio);font-size:.9rem;margin-top:2rem">
+      Ultimo aggiornamento: {{ anno }}.
+    </p>
+  </div>
+</section>
+{% endblock %}

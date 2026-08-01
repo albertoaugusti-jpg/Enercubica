@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block titolo %}La rete Enercubica — imprese e territori{% endblock %}
+{% block descrizione %}Le imprese che compongono la rete Enercubica e i settori in cui operano, dal Nord al Sud Italia.{% endblock %}
+
+{% block contenuto %}
+
+<section class="testata-servizio su-scuro">
+  <div class="contenitore">
+    <p class="briciole"><a href="{{ url_for('home') }}">Home</a> / La rete</p>
+    <div class="intreccio" aria-hidden="true" style="margin-bottom:1.2rem"><span></span><span></span><span></span><span></span></div>
+    <h1>Le imprese della rete</h1>
+    <p>Aziende autonome che lavorano sugli stessi progetti, con standard condivisi
+       e un unico riferimento per il cliente.</p>
+  </div>
+</section>
+
+<section class="sezione">
+  <div class="contenitore">
+    <div class="rete-griglia">
+      <div class="rete-mappa" style="box-shadow:none;padding:0">
+        <img src="{{ url_for('static', filename='img/mappa-rete.png') }}"
+             alt="Mappa delle imprese della rete Enercubica in Italia">
+      </div>
+      <div>
+        <p class="occhiello">Composizione</p>
+        <h2>Chi c'è dentro</h2>
+        <p style="color:var(--grigio)">
+          Ogni partner porta un mestiere preciso. Quando un progetto ne richiede più
+          di uno, il coordinamento è a carico della rete e non del cliente.
+        </p>
+        <ul class="elenco-partner" style="grid-template-columns:1fr">
+          {% for p in partner %}
+          <li>
+            <b>{% if p.sito %}<a href="{{ p.sito }}" target="_blank" rel="noopener">{{ p.nome }}</a>{% else %}{{ p.nome }}{% endif %}</b>
+            <span>{{ p.settore }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sezione sezione-verde su-scuro">
+  <div class="contenitore">
+    <div class="testata">
+      <p class="occhiello">Entrare nella rete</p>
+      <h2>Sei un'impresa e vuoi far parte di Enercubica?</h2>
+      <p>Cerchiamo aziende strutturate, con referenze verificabili, che completino le
+         competenze già presenti. Scrivi al responsabile sviluppo rete.</p>
+    </div>
+    <ul class="recapiti" style="max-width:560px">
+      <li><span class="etichetta">Referente</span>
+          <span><b>{{ azienda.referente }}</b><br>{{ azienda.ruolo }}</span></li>
+      <li><span class="etichetta">Email</span>
+          <span><a href="mailto:{{ azienda.email }}">{{ azienda.email }}</a></span></li>
+      <li><span class="etichetta">Telefono</span>
+          <span><a href="tel:{{ azienda.telefono_link }}">{{ azienda.telefono }}</a></span></li>
+    </ul>
+    <p style="margin-top:1.8rem">
+      <a class="btn btn-chiaro" href="{{ url_for('contatti') }}">Proponi la tua azienda</a>
+    </p>
+  </div>
+</section>
+
+{% endblock %}

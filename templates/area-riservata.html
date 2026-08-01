@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block titolo %}Area riservata — Enercubica{% endblock %}
+
+{% block contenuto %}
+<section class="sezione">
+  <div class="contenitore pannello">
+    <h1 style="font-size:1.9rem">Richieste dal sito</h1>
+
+    {% if esito %}
+      <div class="avviso {{ 'ok' if esito.ok else 'ko' }}">{{ esito.testo }}</div>
+    {% endif %}
+
+    {% if not postmark_ok %}
+      <div class="avviso ko">
+        POSTMARK_TOKEN non è configurato su Render: le richieste vengono salvate ma
+        la mail di notifica non parte.
+      </div>
+    {% endif %}
+
+    <div class="barra-strumenti">
+      <form method="post" action="{{ url_for('test_mail') }}">
+        <button class="btn btn-primario" type="submit">Invia mail di prova</button>
+      </form>
+      <a class="btn btn-linea-verde" href="{{ url_for('esporta_lead') }}">Scarica CSV</a>
+      <a class="btn btn-linea-verde" href="{{ url_for('logout') }}">Esci</a>
+      <span style="font-size:.85rem;color:var(--grigio)">
+        La prova arriva a a.augusti@energelia.it e a.castagnaro@energelia.it
+      </span>
+    </div>
+
+    {% if lead %}
+    <table class="tabella">
+      <thead>
+        <tr><th>Data</th><th>Nome</th><th>Azienda</th><th>Contatti</th><th>Servizio</th><th>Messaggio</th></tr>
+      </thead>
+      <tbody>
+        {% for r in lead %}
+        <tr>
+          <td style="white-space:nowrap">{{ r['data'].replace('T',' ')[:16] }}</td>
+          <td>{{ r['nome'] }}</td>
+          <td>{{ r['azienda'] or '—' }}</td>
+          <td>
+            <a href="mailto:{{ r['email'] }}">{{ r['email'] }}</a>
+            {% if r['telefono'] %}<br><a href="tel:{{ r['telefono'] }}">{{ r['telefono'] }}</a>{% endif %}
+          </td>
+          <td>{{ r['servizio'] or '—' }}</td>
+          <td>{{ r['messaggio'] or '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p style="color:var(--grigio)">Nessuna richiesta ancora arrivata.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

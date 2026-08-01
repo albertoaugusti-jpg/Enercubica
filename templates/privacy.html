@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block titolo %}Privacy Policy — Enercubica{% endblock %}
+
+{% block contenuto %}
+<section class="testata-servizio su-scuro">
+  <div class="contenitore">
+    <p class="briciole"><a href="{{ url_for('home') }}">Home</a> / Privacy Policy</p>
+    <h1>Privacy Policy</h1>
+    <p>Come trattiamo i dati che ci lasci su questo sito.</p>
+  </div>
+</section>
+
+<section class="sezione">
+  <div class="contenitore" style="max-width:760px">
+    <h3>Titolare del trattamento</h3>
+    <p>Enercubica — Rete di Impresa. Per ogni richiesta relativa ai dati personali
+       puoi scrivere a <a href="mailto:{{ azienda.email }}">{{ azienda.email }}</a>.</p>
+
+    <h3>Quali dati raccogliamo</h3>
+    <p>Solo i dati che inserisci volontariamente nel modulo di contatto: nome,
+       azienda, email, telefono, servizio di interesse e messaggio. Non raccogliamo
+       categorie particolari di dati.</p>
+
+    <h3>Perché li usiamo</h3>
+    <p>Per rispondere alla tua richiesta e, se ne nasce un rapporto, per gestire il
+       preventivo e il servizio. La base giuridica è l'esecuzione di misure
+       precontrattuali su tua richiesta (art. 6.1.b GDPR).</p>
+
+    <h3>Per quanto tempo</h3>
+    <p>Conserviamo le richieste per il tempo necessario a gestirle e, in ogni caso,
+       non oltre 24 mesi dall'ultimo contatto, salvo obblighi di legge.</p>
+
+    <h3>A chi li comunichiamo</h3>
+    <p>I dati possono essere condivisi con l'impresa della rete competente per la tua
+       richiesta e con i fornitori tecnici che ci permettono di gestire il sito e la
+       posta elettronica, nominati responsabili del trattamento. Non vendiamo dati a
+       terzi.</p>
+
+    <h3>I tuoi diritti</h3>
+    <p>Puoi chiedere in qualsiasi momento accesso, rettifica, cancellazione,
+       limitazione e portabilità dei dati, oppure opporti al trattamento, scrivendo a
+       <a href="mailto:{{ azienda.email }}">{{ azienda.email }}</a>. Puoi inoltre
+       proporre reclamo al Garante per la protezione dei dati personali.</p>
+
+    <p style="color:var(--grigio);font-size:.9rem;margin-top:2rem">
+      Ultimo aggiornamento: {{ anno }}.
+    </p>
+  </div>
+</section>
+{% endblock %}
