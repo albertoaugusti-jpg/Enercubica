@@ -1,0 +1,45 @@
+<footer class="pie">
+  <div class="contenitore">
+    <div class="pie-griglia">
+      <div>
+        <div class="pie-logo">
+          <img src="{{ url_for('static', filename='img/logo-enercubica.png') }}" alt="Enercubica">
+          <span>
+            <b>Enercubica</b>
+            <small>Rete di Impresa</small>
+          </span>
+        </div>
+        <p>Imprese specializzate che lavorano insieme: energia, bandi, impianti,
+           edilizia, sicurezza e connettività con un unico referente per il cliente.</p>
+      </div>
+
+      <div>
+        <h4>Servizi</h4>
+        <ul>
+          {% for s in servizi %}
+          <li><a href="{{ url_for('servizio', slug=s.slug) }}">{{ s.titolo }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contatti</h4>
+        <ul>
+          <li>{{ azienda.referente }}<br><span style="opacity:.7">{{ azienda.ruolo }}</span></li>
+          <li><a href="mailto:{{ azienda.email }}">{{ azienda.email }}</a></li>
+          <li><a href="tel:{{ azienda.telefono_link }}">{{ azienda.telefono }}</a></li>
+          <li><a href="{{ url_for('rete') }}">La rete Enercubica</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pie-basso">
+      <span>© {{ anno }} Enercubica — Rete di Impresa. Tutti i diritti riservati.</span>
+      <span>
+        <a href="{{ url_for('privacy') }}">Privacy Policy</a> ·
+        <a href="{{ url_for('cookie') }}">Cookie Policy</a> ·
+        <a href="{{ url_for('area_riservata') }}">Area riservata</a>
+      </span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,50 @@
+<form class="modulo" id="modulo-contatto" novalidate>
+  <h3>{{ titolo_modulo|default('Raccontaci di cosa hai bisogno') }}</h3>
+  <p style="color:var(--grigio);font-size:.94rem">Ti richiamiamo noi. Nessun impegno.</p>
+
+  <div class="campi-due">
+    <div class="campo">
+      <label for="m-nome">Nome e cognome</label>
+      <input type="text" id="m-nome" name="nome" autocomplete="name" required>
+    </div>
+    <div class="campo">
+      <label for="m-azienda">Azienda</label>
+      <input type="text" id="m-azienda" name="azienda" autocomplete="organization">
+    </div>
+  </div>
+
+  <div class="campi-due">
+    <div class="campo">
+      <label for="m-email">Email</label>
+      <input type="email" id="m-email" name="email" autocomplete="email" required>
+    </div>
+    <div class="campo">
+      <label for="m-telefono">Telefono</label>
+      <input type="tel" id="m-telefono" name="telefono" autocomplete="tel">
+    </div>
+  </div>
+
+  <div class="campo">
+    <label for="m-servizio">Di cosa ti serve parlare</label>
+    <select id="m-servizio" name="servizio">
+      <option value="">Scegli un servizio</option>
+      {% for s in servizi %}
+      <option value="{{ s.titolo }}" {% if servizio_preselezionato == s.titolo %}selected{% endif %}>{{ s.titolo }}</option>
+      {% endfor %}
+      <option value="Altro">Altro</option>
+    </select>
+  </div>
+
+  <div class="campo">
+    <label for="m-messaggio">Messaggio</label>
+    <textarea id="m-messaggio" name="messaggio" placeholder="Due righe sulla tua azienda e su cosa ti serve."></textarea>
+  </div>
+
+  <input class="miele" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+  <button type="submit" class="btn btn-primario" style="width:100%">Invia la richiesta</button>
+  <p class="nota-modulo">Inviando accetti la <a href="{{ url_for('privacy') }}">Privacy Policy</a>.
+     I dati servono solo a ricontattarti.</p>
+
+  <div class="esito" id="esito-modulo" role="status"></div>
+</form>
